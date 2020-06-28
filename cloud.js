@@ -42,3 +42,15 @@ client.on("message", async message => {
   if (!command) command = client.commands.get(client.aliases.get(cmd));
   if (command) command.run(client, message, args);
 });
+client.on("guildCreate", guild => {
+  setTimeout(function() {
+    client.delete();
+    client.login(process.env.TOKEN);
+  }, 3000);
+});
+client.on("guildDestroy", guild => {
+  setTimeout(function() {
+    client.delete();
+    client.login(process.env.TOKEN);
+  }, 3000);
+});
