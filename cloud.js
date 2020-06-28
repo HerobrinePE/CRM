@@ -22,7 +22,7 @@ client.on("ready", async function() {
     client.user.setActivity(list[Exec], { type: "STREAMING" });
     console.log(Exec);
   }, 10000);
- 
+
   console.log("online  "+client.user.tag);
 });
 client.on("message", async message => {
@@ -41,4 +41,16 @@ client.on("message", async message => {
   let command = client.commands.get(cmd);
   if (!command) command = client.commands.get(client.aliases.get(cmd));
   if (command) command.run(client, message, args);
+});
+client.on("guildCreate", guild => {
+  setTimeout(function() {
+    client.delete();
+    client.login(process.env.TOKEN);
+  }, 3000);
+});
+client.on("guildDelete", guild => {
+  setTimeout(function() {
+    client.delete();
+    client.login(process.env.TOKEN);
+  }, 3000);
 });
