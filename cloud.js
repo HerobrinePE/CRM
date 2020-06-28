@@ -22,7 +22,7 @@ client.on("ready", async function() {
     client.user.setActivity(list[Exec], { type: "STREAMING" });
     console.log(Exec);
   }, 10000);
-
+ 
   console.log("online  "+client.user.tag);
 });
 client.on("message", async message => {
