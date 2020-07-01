@@ -16,7 +16,7 @@ module.exports = {
     try {
       let m = new RichEmbed()
         .setColor("RANDOM")
-        .setDescription(rRole + " ROLE HAS BEEN LOCKED BY " + message.author);
+        .setDescription(rRole + " ROLE HAS BEEN UNLOCKED BY " + message.author);
       message.channel.send(m);
       let server = message.guild;
       const channel = server.channels.forEach(channel => {
