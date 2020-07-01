@@ -1,40 +1,26 @@
-const ms = require("ms")
-const fs = require("fs")
+const {RichEmbed}= require("discord.js")
 module.exports = {
-	name: "rrole",
-  aliases: ["rainbow"],
+	name: "hrole",
+  aliases: ["hexrole"],
 	category: "RoleManagement",
-	description: "***RAINBOW ROLES ARE BACK*** Changes role color to rainbow",
+	description: "***COLOR CHANGE*** Changes role color to a given Hex Color",
 	run: (client, message, args)=>{
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply("You don't have the required permissions to use this command.")
-        .then(m => m.delete(5000));
-  let ge = args[0]
-    let mc=args[1]
-    if(!mc) return message.reply("select a time 4s or above remember leave a space between selections")
-    let t = args[2]
-    if(!t) return message.reply("time stamps can be s/m/h/d and leave space while selecting time")
+      return message.reply("You don't have the required permissions to use this command.").then(m => m.delete(5000));
+      let text = args[0]
+      let ge = args[1]
+      if(!text)return message.reply("please specify hex color")
     let rRole= message.guild.roles.find("name", ge)
     if(!rRole) return message.reply("role not found")
     try{
-      if(mc < 10){
-        message.reply("10 seconds or above")
-      }
-      if(mc >= 10){
-              message.channel.send(ge+" role has been set to rainbow role with "+ms(ms(mc+t)) + " interval")
-role()
-      }
-      function role(){
-      var colors = ["#FF2E00","#00FF20","#00FFCF","#0014FF","#FF00B3","#FF7500"]
-      var random = colors[Math.floor(Math.random() * colors.length)]
-      setTimeout(() =>{
-        role()
         rRole.edit({
-            color: random
+            color: text
         })
-    }, ms(mc+t));
-      }
+        let embed = new RichEmbed()
+        .setColor(text)
+        .setTitle("role color changed")
+        .addField(`${message.author.tag}`, "changed the "+rRole+" color to "+ text )
+        message.channel.send(embed)
     }catch(error){
       message.guild.channels.find("name", "errorlogs").send(error+"01=^^")
     }
