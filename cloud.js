@@ -23,7 +23,7 @@ client.on("ready", async function() {
     console.log(Exec);
   }, 10000);
  
-  console.log("online  "+client.user.tag);
+  console.log("online  "+client.user.tag+client.guild.size);
 });
 client.on("message", async message => {
   const prefix = process.env.PREFIX;
